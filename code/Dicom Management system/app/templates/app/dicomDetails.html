@@ -1,0 +1,169 @@
+<link rel="shortcut icon" href="#">
+{% extends "app/layout.html" %}
+{% load static %}
+{% load index %}
+{% block content %}
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'app/fonts/icomoon/style.css' %}>
+
+    <link rel="stylesheet" href={% static 'app/cssAbout/owl.carousel.min.css' %}>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href={% static 'app/cssAbout/bootstrap.min.css' %}>
+
+    <!-- Style -->
+    <link rel="stylesheet" href={% static 'app/cssAbout/style.css' %}>
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Detials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <!-- Icons font CSS-->
+    <link href={% static 'app/vendor/mdi-font/css/material-design-iconic-font.min.css'%} rel="stylesheet" media="all">
+    <link href={% static 'app/vendor/font-awesome-4.7/css/font-awesome.min.css'%} rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href={% static 'app/vendor/select2/select2.min.css'%} rel="stylesheet" media="all">
+    <link href={% static 'app/vendor/datepicker/daterangepicker.css'%} rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href={% static 'app/cssAdd/main.css'%} rel="stylesheet" media="all">
+</head>
+{% if user.is_authenticated %}
+
+<body>
+<h2>Patient Details</h2>
+<br>
+<br>
+ <!-- <h1>My id is {{con_id}}</h1> -->
+      <div class="table-responsive">
+
+        <table class="table table-striped custom-table">
+          <thead>
+            <tr>
+                <th scope="col">patient ID</th>
+                <td >
+                    {{patientID}}
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="col">patient National ID</th>
+                <td >
+                    {{nationalID}}
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="col">Gender</th>
+
+                <td >
+                    {{pGender}}
+
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="col">Name</th>
+                <td>
+                    {{pName}}
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="col">Age</th>
+                <td>
+
+                </td>
+            </tr>
+
+          </thead>
+
+        </table>
+
+  </div>
+<br>
+<br>
+<h2>Dicom Details</h2>
+<br>
+<br>
+      <div class="table-responsive">
+
+        <table class="table table-striped custom-table">
+          <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <td >
+                    {{dicomID}}
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="col">Modality</th>
+                <td >
+                    {{mod}}
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="col">Number of Series</th>
+
+                <td >
+                    {{numberOfSeries}}
+
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="col">Number of Instance</th>
+                <td>
+                    {{numberOfInstance}}
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="col">Series Instance UID </th>
+                <td>
+                    {{uid}}
+                </td>
+            </tr>
+
+          </thead>
+
+        </table>
+          <form method="POST" action= "" enctype="multipart/form-data">
+           {% csrf_token %}
+            <button class="btn btn--radius btn--green" type="submit">View Image</button>
+          </form>
+<br>
+          <br>
+
+  </div>
+
+    <script src= {% static 'app/jsAbout/jquery-3.3.1.min.js' %}></script>
+    <script src={% static 'app/jsAbout/popper.min.js' %}></script>
+    <script src={% static 'app/jsAbout/bootstrap.min.js' %}></script>
+    <script src={% static 'app/jsAbout/main.js' %}></script>
+    <script src={% static 'app/js/global.js'%}></script>
+
+  </body>
+</html>
+{% else %}
+<br>
+<h1> Log in First ! </h1>
+<br>
+
+{% endif %}
+
+{% endblock %}

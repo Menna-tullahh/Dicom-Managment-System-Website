@@ -1,0 +1,123 @@
+{% extends "app/layout.html" %}
+{% load static %}
+{% block content %}
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'app/fonts/icomoon/style.css' %}>
+
+    <link rel="stylesheet" href={% static 'app/cssAbout/owl.carousel.min.css' %}>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href={% static 'app/cssAbout/bootstrap.min.css' %}>
+
+    <!-- Style -->
+    <link rel="stylesheet" href={% static 'app/cssAbout/style.css' %}>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add Record</title>
+
+
+    <!-- Icons font CSS-->
+    <link href={% static 'app/vendor/mdi-font/css/material-design-iconic-font.min.css'%} rel="stylesheet" media="all">
+    <link href={% static 'app/vendor/font-awesome-4.7/css/font-awesome.min.css'%} rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href={% static 'app/vendor/select2/select2.min.css'%} rel="stylesheet" media="all">
+    <link href={% static 'app/vendor/datepicker/daterangepicker.css'%} rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href={% static 'app/cssAdd/main.css'%} rel="stylesheet" media="all">
+</head>
+
+<body>
+
+            <div class="card card-1">
+                <div class="card-body">
+{% if message %}
+<div class="alert success">
+  <span class="closebtn">&times;</span>  
+  <strong>Success!</strong> The Record is uploaded successfully
+</div>
+
+<script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+  }
+}
+</script>
+   {% endif %}
+                    {% if user.is_authenticated %}
+
+                    <h2 class="title">Add New Record</h2>
+                    <form method="POST" action= "." enctype="multipart/form-data">
+                       {% csrf_token %}
+    
+                       <p><b>Patient's National ID : </b>
+                            <select name = "dropdown" class = "form-control">
+                                {% for results in patientObject %}
+                                <option value=" {{results.ID}}" > {{results.nationalID}}{{resuls.patientName}} </option>
+                                  {% endfor %}
+                                </select>
+</p>
+                            <br>
+
+ <p><b>Modality : </b>
+                            <select name = "dropdown2" class = "form-control">
+
+                                <option value="MR" > MR -- Magnetic Resonance </option>
+                                <option value="NM" > NM -- Nuclear Medicine </option>
+                                <option value="RF" > RF -- Radio Fluoroscopy </option>
+                                <option value="BI" > BI -- Biomagnetic imaging </option>
+                                <option value="PT" > PT -- Positron emission tomography (PET) </option>
+                                </select>
+</p>
+<br>
+                              <input type="file" name="myfile" id="myfile">
+
+                            <br>
+                            <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                    </form> 
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+    <!-- Jquery JS-->
+    <script src= {% static 'app/vendor/jquery/jquery.min.js'%}></script>
+    <!-- Vendor JS-->
+    <script src={% static 'app/vendor/select2/select2.min.js'%}></script>
+    <script src={% static 'app/vendor/datepicker/moment.min.js'%}></script>
+    <script src={% static 'app/vendor/datepicker/daterangepicker.js'%}></script>
+
+    <!-- Main JS-->
+    <script src={% static 'app/js/global.js'%}></script>
+
+
+</body>
+
+</html>
+{% else %}
+<br>
+<h1> Log in First ! </h1>
+<br>
+
+{% endif %}
+
+{% endblock %}

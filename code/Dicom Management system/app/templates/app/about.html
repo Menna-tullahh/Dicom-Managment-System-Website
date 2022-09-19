@@ -1,0 +1,129 @@
+<link rel="shortcut icon" href="#">
+{% extends "app/layout.html" %}
+{% load static %}
+{% load index %}
+{% block content %}
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'app/fonts/icomoon/style.css' %}>
+
+    <link rel="stylesheet" href={% static 'app/cssAbout/owl.carousel.min.css' %}>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href={% static 'app/cssAbout/bootstrap.min.css' %}>
+
+    <!-- Style -->
+    <link rel="stylesheet" href={% static 'app/cssAbout/style.css' %}>
+
+
+{% if user.is_authenticated %}
+
+<br>
+<h1> Dicom Records </h1>
+<br>
+
+{% endif %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Records</title>
+
+
+    <!-- Icons font CSS-->
+    <link href={% static 'app/vendor/mdi-font/css/material-design-iconic-font.min.css'%} rel="stylesheet" media="all">
+    <link href={% static 'app/vendor/font-awesome-4.7/css/font-awesome.min.css'%} rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href={% static 'app/vendor/select2/select2.min.css'%} rel="stylesheet" media="all">
+    <link href={% static 'app/vendor/datepicker/daterangepicker.css'%} rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href={% static 'app/cssAdd/main.css'%} rel="stylesheet" media="all">
+</head>
+{% if user.is_authenticated %}
+
+  <body>
+
+
+
+      <div class="table-responsive">
+
+        <table class="table table-striped custom-table">
+          <thead>
+            <tr>
+              <th scope="col">
+
+              </th>
+              <th scope="col">ID</th>
+              <th scope="col">Patient Name</th>
+              <th scope="col">Contact Number</th>
+              <th scope="col">National ID</th>
+              <th scope="col">Modality</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+
+
+
+{% for i in record %}
+
+            <tr scope="row">
+              <td>
+
+              </td>
+              <td>
+            {{i.ID}}
+              </td>
+              <td class="pl-0">
+                <div class="d-flex align-items-center">
+
+                  <a href="#">
+                    {{test_list|index:forloop.counter0}}
+
+                </a>
+                </div>
+              </td>
+              <td>
+                                                    {{test_list_number|index:forloop.counter0}}
+
+               <!-- <small class="d-block">Far far away, behind the word mountains</small> -->
+              </td>
+              <td>
+                  {{test_list_national|index:forloop.counter0}}
+</td>
+              <td>{{i.modality}}</td>
+              <td><a href="sp_contact/{{i.ID}}" class="more">Details</a></td>
+
+            </tr>
+{% endfor %}
+
+        </table>
+
+
+
+  </div>
+
+
+
+    <script src= {% static 'app/jsAbout/jquery-3.3.1.min.js' %}></script>
+    <script src={% static 'app/jsAbout/popper.min.js' %}></script>
+    <script src={% static 'app/jsAbout/bootstrap.min.js' %}></script>
+    <script src={% static 'app/jsAbout/main.js' %}></script>
+
+    <script src={% static 'app/js/global.js'%}></script>
+
+  </body>
+</html>
+{% else %}
+<br>
+<h1> Log in First ! </h1>
+<br>
+
+{% endif %}
+
+{% endblock %}
